@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+  <form action="/enviar" method="post">
+    <h2>Cliente:<input name="cliente" type="text"></h2>
+    <h2>Pedido:<input name="pedido" type="text"></h2>
+    <h2>Caja
+      <select name="caja" id="">
+        <option value="value1">Value 1</option>
+        <option value="value2" selected>Value 2</option>
+        <option value="value3">Value 3</option>
+      </select>
+    </h2>
+    <input type="submit" value="Enviar">
+  </form>
+</body>
+
+</html>

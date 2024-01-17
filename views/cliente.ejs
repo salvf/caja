@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+  <ul id="messages"></ul>
+</body>
+<script src="/javascripts/socket.io.min.js"></script>
+
+<script>
+  var socket = io();
+  var messages = document.getElementById('messages');
+  socket.on('json', function(msg) {
+    console.log(msg)
+    var item = document.createElement('li');
+    item.textContent = "Cliente: "+msg.cliente+", Pedido: "+msg.pedido+", Caja: "+msg.caja;
+    messages.appendChild(item);
+    window.scrollTo(0, document.body.scrollHeight);
+  });
+</script>
+
+</html>
