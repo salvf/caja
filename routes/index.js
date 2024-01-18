@@ -26,8 +26,7 @@ router.get('/form', function (req, res, next) {
 router.get('/db', function (req, res, next) {
   var a = "Naamr"
   var b = new Date().toISOString().slice(0, 19).replace('T', ' ');
-  console.log(b)
-  var query=`INSERT INTO BITACORA (nombre_cliente, pedido_cliente, caja, estado_pedido, nota_entrega, empleado, hora_entregando) VALUES ("${a}","${a}",1,"ENTREGANDO",null,11111111,"${b}");`
+  var query=`INSERT INTO bitacora (nombre_cliente, pedido_cliente, caja, estado_pedido, nota_entrega, empleado, hora_entregando) VALUES ("${a}","${a}",1,"ENTREGANDO",null,11111111,"${b}");`
   db.query(query, function(err, data) {
     if(err)
       res.send(err);
@@ -44,7 +43,7 @@ router.post('/registro', function (req, res, next) {
     fecha: req.body.fecha
   }
   console.log(jsonData)
-  let query = `INSERT INTO BITACORA (nombre_cliente, pedido_cliente, caja, estado_pedido, nota_entrega, empleado, hora_entregando) VALUES ("${req.body.cliente}","${req.body.pedido}",${req.body.fila},"ENTREGANDO",null,11111111,"${req.body.fecha}");
+  let query = `INSERT INTO bitacora (nombre_cliente, pedido_cliente, caja, estado_pedido, nota_entrega, empleado, hora_entregando) VALUES ("${req.body.cliente}","${req.body.pedido}",${req.body.fila},"ENTREGANDO",null,11111111,"${req.body.fecha}");
                 `;
   db.query(query, function (err, data) {
     if (err)
