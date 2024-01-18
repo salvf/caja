@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/images/apple-icon.png">
+  <link rel="icon" type="image/png" href="/images/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    <%= title %>
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <!-- CSS Files -->
+  <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" />
+  <link href="/stylesheets/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <style>
+    .panel-header {
+      background: -webkit-gradient(linear, left top, right top, from(#d808b2), color-stop(60%, #ce4288), to(#dc0e94));
+      background: linear-gradient(to right, #d808b2 0%, #ce4288 60%, #dc0e94 100%);
+    }
+
+    .main-panel {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body class="user-profile">
+  <div class="wrapper ">
+
+    <div class="main-panel" id="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-absolute">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="#">
+              <H1>ENTREGA DE PEDIDOS</H1>
+            </a>
+          </div>
+        </div>
+        <div class="collapse navbar-collapse justify-content-end" id="navigation"><img src="/images/cac.jpg" width="28%"></div>
+
+      </nav>
+      <!-- End Navbar -->
+      <div class="panel-header panel-header-sm">
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-header">
+                <h5 class="title">Registro de Pedido</h5>
+              </div>
+              <div class="card-body">
+                <form>
+                  <div class="row">
+                    <div class="col-md-5 pr-1">
+                      <div class="form-group">
+                        <label id="lcliente">Nombre del Cliente</label>
+                        <input type="text" class="form-control" placeholder="Nombre" name="cliente" id="cliente" required>
+                      </div>
+                    </div>
+                    <div class="col-md-3 px-1">
+                      <div class="form-group">
+                        <label id="lpedido">Número del Pedido</label>
+                        <input type="text" class="form-control" placeholder="Pedido" name="pedido" id="pedido" required>
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label>Fila</label>
+                        <select id="fila" name="fila" class="form-control">
+                          <option value="1">Fila 1</option>
+                          <option value="2">Fila 2</option>
+                          <option value="3">Fila 3</option>
+                          <option value="4">Fila 4</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <!--
+                  <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>First Name</label>
+                        <input type="text" class="form-control" placeholder="Company" value="Mike">
+                      </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                      <div class="form-group">
+                        <label>Last Name</label>
+                        <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 pr-1">
+                      <div class="form-group">
+                        <label>City</label>
+                        <input type="text" class="form-control" placeholder="City" value="Mike">
+                      </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                      <div class="form-group">
+                        <label>Country</label>
+                        <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                      </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                      <div class="form-group">
+                        <label>Postal Code</label>
+                        <input type="number" class="form-control" placeholder="ZIP Code">
+                      </div>
+                    </div>
+                  </div>-->
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Notas</label>
+                        <textarea rows="4" cols="100" class="form-control" placeholder="Escribir notas en caso de haber algún problema en la entrega."></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8 ml-auto mr-auto">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <button class="btn btn-primary btn-block" id="registrar">Registrar</button>
+                        </div>
+                        <div class="col-md-6">
+                          <button class="btn btn-info btn-block">Liberar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card card-user">
+              <div class="image">
+                <img src="/images/bg5.jpg" alt="...">
+              </div>
+              <div class="card-body">
+                <div class="author">
+                  <a href="#">
+                    <img class="avatar border-gray" src="/images/mike.jpg" alt="...">
+                    <h5 class="title">Nombre Empleado</h5>
+                  </a>
+                </div>
+
+              </div>
+              <!-- <hr>
+              <div class="button-container">
+                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                  <i class="fab fa-facebook-f"></i>
+                </button>
+                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                  <i class="fab fa-twitter"></i>
+                </button>
+                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                  <i class="fab fa-google-plus-g"></i>
+                </button>
+              </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!--   Core JS Files   -->
+  <script src="/javascripts/core/jquery.min.js"></script>
+  <script src="/javascripts/core/popper.min.js"></script>
+  <script src="/javascripts/core/bootstrap.min.js"></script>
+  <script src="/javascripts/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!-- Chart JS -->
+  <script src="/javascripts/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="/javascripts/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="/javascripts/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+  <script>
+    function validardatos() {
+      var cliente = $('#cliente').val()
+      var pedido = $('#pedido').val()
+      var fila = $('#fila option:selected').val()
+      var datos = {
+        cliente: '',
+        pedido: '',
+        fila: '',
+        fecha: new Date().toISOString().slice(0, 19).replace('T', ' ')
+      }
+      datos.fila = fila;
+      if (cliente)
+        datos.cliente = cliente;
+      else $('#lcliente').toggleClass('text-danger')
+      if (pedido)
+        datos.pedido = pedido;
+      else $('#lpedido').toggleClass('text-danger')
+      
+      if (pedido && cliente)
+        return datos;
+      else return false;
+    }
+
+    $("#registrar").click(function() {
+      var datos = validardatos();
+      if (datos) {
+        $.post('/registro', datos, function(respuesta) {
+          if (respuesta.error)
+            alert(respuesta.msg);
+          else if(respuesta.success)
+          alert(respuesta.msg);
+           console.log(respuesta);
+        });
+      }
+
+    });
+  </script>
+</body>
+
+</html>
