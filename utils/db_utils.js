@@ -1,4 +1,5 @@
 var mysql = require('mysql');
+require('dotenv').config();
 
 var db_conexion = mysql.createPool({
     connectionLimit: 10,

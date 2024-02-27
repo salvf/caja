@@ -27,6 +27,18 @@
       width: 100%;
       height: 100%;
     }
+
+    .navbar-wrapper a h1 {
+      transform: translatex(0px) translatey(15px);
+    }
+
+    /* Image */
+    .card-user div>img {
+      display: inline-block;
+      transform: translatex(0px) translatey(0px) !important;
+      height: 222px;
+      width: 100%;
+    }
   </style>
 </head>
 
@@ -62,19 +74,19 @@
                     <div class="col-md-5 pr-1">
                       <div class="form-group">
                         <label id="lcliente">Nombre del Cliente</label>
-                        <input type="text" class="form-control" placeholder="Nombre" name="cliente" id="cliente" required>
+                        <input type="text" class="form-control" placeholder="Nombre" name="cliente" id="cliente" required <% if (flag == 'L') { %>disabled <% } %>>
                       </div>
                     </div>
                     <div class="col-md-3 px-1">
                       <div class="form-group">
                         <label id="lpedido">Número del Pedido</label>
-                        <input type="text" class="form-control" placeholder="Pedido" name="pedido" id="pedido" required>
+                        <input type="text" class="form-control" placeholder="Pedido" name="pedido" id="pedido" required <% if (flag == 'L') { %>disabled <% } %>>
                       </div>
                     </div>
                     <div class="col-md-4 pl-1">
                       <div class="form-group">
                         <label>Fila</label>
-                        <select id="fila" name="fila" class="form-control">
+                        <select id="fila" name="fila" class="form-control" <% if (flag == 'L') { %>disabled <% } %>>
                           <option value="1">Fila 1</option>
                           <option value="2">Fila 2</option>
                           <option value="3">Fila 3</option>
@@ -130,108 +142,263 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Notas</label>
-                        <textarea rows="4" cols="100" class="form-control" placeholder="Escribir notas en caso de haber algún problema en la entrega."></textarea>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-lg-8 ml-auto mr-auto">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <button class="btn btn-primary btn-block" id="registrar">Registrar</button>
-                        </div>
-                        <div class="col-md-6">
-                          <button class="btn btn-info btn-block">Liberar</button>
-                        </div>
+                        <textarea id="notas" rows="4" cols="100" class="form-control" style="white-space: pre-wrap;" placeholder="Escribir notas en caso de haber algún problema en la entrega." <% if (flag == 'L') { %>disabled <% } %>></textarea>
                       </div>
                     </div>
                   </div>
                 </form>
+                <div class="row">
+                  <div class="col-lg-8 ml-auto mr-auto">
+                    <div class="row">
+                      <div class="col-md-9">
+                        <button class="btn btn-primary btn-block" id="registrar" <% if (flag == 'L') { %>disabled <% } %>>Registrar</button>
+                      </div>
+                      <div class="col-md-3">
+                        <button class="btn btn-info btn-block" id="liberar" <% if (flag == 'L') { %>disabled <% } %>>Liberar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
           <div class="col-md-4">
+            <% if (flag == 'A') { %>
             <div class="card card-user">
               <div class="image">
-                <img src="/images/bg5.jpg" alt="...">
+                <img src="/images/bg4.jpg" alt="...">
               </div>
               <div class="card-body">
                 <div class="author">
                   <a href="#">
-                    <img class="avatar border-gray" src="/images/mike.jpg" alt="...">
-                    <h5 class="title">Nombre Empleado</h5>
+                    <img class="avatar border-gray" src="/images/perfil.png" alt="...">
+                    <h5 class="title"><%= empleado.nombre%></h5>
                   </a>
                 </div>
-
+                <div class="row">
+                  <form class="col-md-12" method="GET" action="/logout">
+                    <div class="col-md-12">
+                      <button class="btn btn-danger btn-block" type="submit" id="cerrarsesion">Cerrar Sesion</button>
+                    </div>
+                  </form>
+                </div>
               </div>
-              <!-- <hr>
-              <div class="button-container">
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-facebook-f"></i>
-                </button>
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-twitter"></i>
-                </button>
-                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
-                  <i class="fab fa-google-plus-g"></i>
-                </button>
-              </div>-->
+              <% } else {%>
+              <div class="card card-user">
+                <div class="image">
+                  <img src="/images/bg4.jpg" alt="...">
+                </div>
+                <div class="card-body">
+                  <div class="author">
+                    <a href="#">
+                      <img class="avatar border-gray" src="/images/perfil.png" alt="...">
+                    </a>
+                    <h5 class="title">INICIO DE SESION</h5>
+                  </div>
+                  <form id="loginfrm" class="pt-5">
+                    <!-- method="POST" action="/login"-->
+
+                    <div class="form-group">
+                      <label for="matricula" id="lmatricula">Matricula</label>
+                      <input type="text" class="form-control" id="matricula" name="matricula" aria-describedby="emailHelp" placeholder="" autocomplete="false">
+                      <i class="mdi mdi-account"></i>
+                    </div>
+                    <div class="form-group">
+                      <label for="contrasena" id="lcontrasena">Contraseña</label>
+                      <input type="password" class="form-control" id="contrasena" name="contrasena" placeholder="" autocomplete="false">
+                      <i class="mdi mdi-eye"></i>
+                    </div>
+                    <div class="mt-5">
+                      <a class="btn btn-block btn-primary btn-lg font-weight-medium text-light" id="login">Iniciar Sesión</a>
+                    </div>
+
+                  </form>
+                </div>
+                <!-- <hr>
+                <div class="button-container">
+                  <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                    <i class="fab fa-facebook-f"></i>
+                  </button>
+                  <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                    <i class="fab fa-twitter"></i>
+                  </button>
+                  <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                    <i class="fab fa-google-plus-g"></i>
+                  </button>
+                </div>-->
+              </div>
+              <% } %>
             </div>
           </div>
         </div>
+
       </div>
-
     </div>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="/javascripts/core/jquery.min.js"></script>
-  <script src="/javascripts/core/popper.min.js"></script>
-  <script src="/javascripts/core/bootstrap.min.js"></script>
-  <script src="/javascripts/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!-- Chart JS -->
-  <script src="/javascripts/plugins/chartjs.min.js"></script>
-  <!--  Notifications Plugin    -->
-  <script src="/javascripts/plugins/bootstrap-notify.js"></script>
-  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="/javascripts/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
-  <script>
-    function validardatos() {
-      var cliente = $('#cliente').val()
-      var pedido = $('#pedido').val()
-      var fila = $('#fila option:selected').val()
-      var datos = {
-        cliente: '',
-        pedido: '',
-        fila: '',
-        fecha: new Date().toISOString().slice(0, 19).replace('T', ' ')
+    <!--   Core JS Files   -->
+    <script src="/javascripts/core/jquery.min.js"></script>
+    <script src="/javascripts/core/popper.min.js"></script>
+    <script src="/javascripts/core/bootstrap.min.js"></script>
+    <script src="/javascripts/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!-- Chart JS -->
+    <script src="/javascripts/plugins/chartjs.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="/javascripts/plugins/bootstrap-notify.js"></script>
+    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="/javascripts/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+    <script>
+      function showNotification(a, e, c, m) {
+        $.notify({
+          icon: "now-ui-icons ui-1_bell-53",
+          message: m
+        }, {
+          type: c,
+          timer: 8e3,
+          placement: {
+            from: a,
+            align: e
+          }
+        })
       }
-      datos.fila = fila;
-      if (cliente)
-        datos.cliente = cliente;
-      else $('#lcliente').toggleClass('text-danger')
-      if (pedido)
-        datos.pedido = pedido;
-      else $('#lpedido').toggleClass('text-danger')
-      
-      if (pedido && cliente)
-        return datos;
-      else return false;
-    }
+    </script>
+    <% if (flag == 'A') { %>
+    <script>
+      var estado = false;
+      function obtenerFechaConFormato() {
+        const fecha = new Date();
 
-    $("#registrar").click(function() {
-      var datos = validardatos();
-      if (datos) {
-        $.post('/registro', datos, function(respuesta) {
-          if (respuesta.error)
-            alert(respuesta.msg);
-          else if(respuesta.success)
-          alert(respuesta.msg);
-           console.log(respuesta);
-        });
+        const anio = fecha.getFullYear();
+        const mes = agregarCeroAlInicio(fecha.getMonth() + 1);
+        const dia = agregarCeroAlInicio(fecha.getDate());
+        const horas = agregarCeroAlInicio(fecha.getHours());
+        const minutos = agregarCeroAlInicio(fecha.getMinutes());
+        const segundos = agregarCeroAlInicio(fecha.getSeconds());
+
+        const formatoFecha = `${anio}-${mes}-${dia} ${horas}:${minutos}:${segundos}`;
+
+        return formatoFecha;
       }
 
-    });
-  </script>
+      function bloquearforms() {
+        estado = false;
+        $('#cliente').prop('disabled', (i, v) => !v);
+        $('#pedido').prop('disabled', (i, v) => !v);
+        $('#fila').prop('disabled', (i, v) => !v);
+        $('#registrar').prop('disabled', (i, v) => !v);
+        $('#cerrarsesion').prop('disabled', (i, v) => !v);
+      }
+
+      function agregarCeroAlInicio(numero) {
+        return numero < 10 ? `0${numero}` : numero;
+      }
+
+      function validardatos() {
+        var cliente = $('#cliente').val()
+        var pedido = $('#pedido').val()
+        var fila = $('#fila option:selected').val()
+        var notas = $('#notas').val()
+        var datos = {
+          cliente: '',
+          pedido: '',
+          fila: '',
+          nota: '',
+          fecha: obtenerFechaConFormato()
+        }
+        datos.fila = fila;
+        datos.notas = notas;
+        if (cliente)
+          datos.cliente = cliente;
+        else $('#lcliente').toggleClass('text-danger')
+        if (pedido)
+          datos.pedido = pedido;
+        else $('#lpedido').toggleClass('text-danger')
+
+        if (pedido && cliente)
+          return datos;
+        else return false;
+      }
+
+      $("#registrar").click(function() {
+        var datos = validardatos();
+        if (datos) {
+          $.ajax({
+            type: "POST",
+            url: "/registro",
+            data: datos,
+            success: function(response) {
+              showNotification("bottom", "center", "success", response.msg)
+              bloquearforms();
+              estado = true;
+            },
+            error: function(response){
+              showNotification("bottom", "center", "danger", response.responseJSON.msg)
+            }
+          });
+        }
+
+      });
+
+      $("#liberar").click(function() {
+        var datos = validardatos();
+        if (datos) {
+          $.ajax({
+            type: "POST",
+            url: "/libera",
+            data: datos,
+            success: function(response) {
+              showNotification("bottom", "center", "success", response.msg)
+              if(estado)
+                bloquearforms()
+              $('#cliente').val("")
+              $('#pedido').val("")
+              $('#notas').val("")
+            }
+          });
+        }
+
+      });
+    </script>
+    <% } else { %>
+    <script>
+      function validardatos() {
+        var matricula = $('#matricula').val()
+        var contrasena = $('#contrasena').val()
+        var datos = {
+          matricula: '',
+          contrasena: ''
+        }
+        if (matricula)
+          datos.matricula = matricula;
+        else $('#lmatricula').toggleClass('text-danger')
+        if (contrasena)
+          datos.contrasena = contrasena;
+        else $('#lcontrasena').toggleClass('text-danger')
+
+        if (matricula && contrasena)
+          return datos;
+        else return false;
+      }
+
+      $("#login").click(function() {
+        var datos = validardatos();
+        if (datos) {
+          $.ajax({
+            type: "POST",
+            url: "/login",
+            data: datos,
+            success: function(response) {
+              console.log(response);
+              if (response.redirect) {
+                window.location.href = response.redirect;
+              }
+              if (response.error)
+                showNotification("bottom", "center", "danger", response.msg)
+            }
+          });
+        }
+
+      });
+    </script>
+    <% } %>
 </body>
 
 </html>
